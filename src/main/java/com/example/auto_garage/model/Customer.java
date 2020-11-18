@@ -29,7 +29,7 @@ public class Customer {
     private List<Auto> autos = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name= "appointment_id")
+    @JoinColumn(name = "appointment_id")
     private Appointment appointment;
 
     public Appointment getAppointment() {

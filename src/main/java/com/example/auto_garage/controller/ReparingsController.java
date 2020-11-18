@@ -54,8 +54,8 @@ public class ReparingsController {
 
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<Object> updateReparingsreparingsial(@PathVariable("id") long id, @RequestBody Map<String, String> fields,Map<Double,Double>fields2) {
-        reparingsService.partialUpdateReparings(id, fields,fields2);
+    public ResponseEntity<Object> updateReparingsreparingsial(@PathVariable("id") long id, @RequestBody Map<String, String> fields, Map<Double, Double> fields2) {
+        reparingsService.partialUpdateReparings(id, fields, fields2);
         return ResponseEntity.noContent().build();
     }
 

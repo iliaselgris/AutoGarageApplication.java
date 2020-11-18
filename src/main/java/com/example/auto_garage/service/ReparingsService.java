@@ -22,7 +22,6 @@ public class ReparingsService {
     }
 
 
-
     public Optional<Reparings> getReparingsById(long id) {
         if (!reparingsRepository.existsById(id)) throw new RecordNotFoundException();
         return reparingsRepository.findById(id);
@@ -32,6 +31,7 @@ public class ReparingsService {
         Reparings newReparings = reparingsRepository.save(reparings);
         return newReparings.getId();
     }
+
     public void updateReparings(long id, Reparings reparings) {
         if (!reparingsRepository.existsById(id)) throw new RecordNotFoundException();
         Reparings existingReparings = reparingsRepository.findById(id).get();
@@ -40,7 +40,7 @@ public class ReparingsService {
         reparingsRepository.save(existingReparings);
     }
 
-    public void partialUpdateReparings(long id, Map<String, String> fields,Map<Double, Double>fields2) {
+    public void partialUpdateReparings(long id, Map<String, String> fields, Map<Double, Double> fields2) {
         if (!reparingsRepository.existsById(id)) throw new RecordNotFoundException();
         Reparings reparings = reparingsRepository.findById(id).get();
         for (String field : fields.keySet()) {
@@ -48,7 +48,7 @@ public class ReparingsService {
                 case "name":
                     reparings.setName((String) fields.get(field));
                     break;
-                case "brand":
+                case "price":
                     reparings.setReparingPrice((double) fields2.get(field));
                     break;
             }
@@ -60,7 +60,6 @@ public class ReparingsService {
         if (!reparingsRepository.existsById(id)) throw new RecordNotFoundException();
         reparingsRepository.deleteById(id);
     }
-
 
 
 }

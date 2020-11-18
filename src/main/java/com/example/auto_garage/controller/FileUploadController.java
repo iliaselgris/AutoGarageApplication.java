@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 @RequestMapping
 @RestController
 @PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR')")
@@ -37,7 +38,7 @@ public class FileUploadController {
     }
 
     @PostMapping("/uploadMultipleFiles")
-    public List< Response > uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+    public List<Response> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(file))

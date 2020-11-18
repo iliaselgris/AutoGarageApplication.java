@@ -33,7 +33,7 @@ public class User {
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.EAGER)
-    private  Set<com.example.auto_garage.model.employee.Authority> authorities = new HashSet<>();
+    private Set<com.example.auto_garage.model.employee.Authority> authorities = new HashSet<>();
 
     public String getUsername() {
         return username;

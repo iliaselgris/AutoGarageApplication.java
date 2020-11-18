@@ -1,4 +1,5 @@
 package com.example.auto_garage.model.employee;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -6,7 +7,6 @@ import java.io.Serializable;
 @IdClass(AuthorityKey.class)
 @Table(name = "authorities")
 public class Authority implements Serializable {
-
 
 
     @Id

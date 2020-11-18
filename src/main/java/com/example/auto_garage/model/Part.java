@@ -15,7 +15,7 @@ public class Part {
 
 
     @ManyToOne
-    @JoinColumn(name="reparings_id")
+    @JoinColumn(name = "reparings_id")
 
     private Reparings reparings;
 

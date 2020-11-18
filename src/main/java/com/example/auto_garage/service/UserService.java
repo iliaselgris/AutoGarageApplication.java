@@ -9,13 +9,14 @@ import com.example.auto_garage.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
 @Service
 
-public class UserService implements UserServiceInterface{
+public class UserService implements UserServiceInterface {
     @Autowired
     private UserRepository userRepository;
 
@@ -30,18 +31,19 @@ public class UserService implements UserServiceInterface{
     }
 
 
-
     @Override
 
     public String createUser(User user) {
         User newUser = userRepository.save(user);
         return newUser.getUsername();
     }
+
     @Override
 
     public void deleteUser(String username) {
         userRepository.deleteById(username);
     }
+
     @Override
 
     public void updateUser(String username, User newUser) {
@@ -50,6 +52,7 @@ public class UserService implements UserServiceInterface{
         user.setPassword(newUser.getPassword());
         userRepository.save(user);
     }
+
     @Override
 
     public Set<Authority> getAuthorities(String username) {
@@ -57,12 +60,13 @@ public class UserService implements UserServiceInterface{
         User user = userRepository.findById(username).get();
         return user.getAuthorities();
     }
+
     @Override
 
     public void addAuthority(String username, String authority) {
         if (!userRepository.existsById(username)) throw new UsernameNotFoundException(username);
         User user = userRepository.findById(username).get();
-        user.addAuthority(new Authority(username,authority));
+        user.addAuthority(new Authority(username, authority));
         userRepository.save(user);
     }
 
@@ -75,7 +79,6 @@ public class UserService implements UserServiceInterface{
         user.removeAuthority(authorityToRemove);
         userRepository.save(user);
     }
-
 
 
 }

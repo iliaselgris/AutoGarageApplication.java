@@ -67,8 +67,7 @@ public class UserController {
             String authorityName = (String) fields.get("authority");
             userService.addAuthority(username, authorityName);
             return ResponseEntity.noContent().build();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new BadRequestException();
         }
     }

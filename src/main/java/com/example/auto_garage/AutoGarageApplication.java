@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 public class AutoGarageApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AutoGarageApplication.class, args);
+    public static void main(String[] args) {
+        SpringApplication.run(AutoGarageApplication.class, args);
 
-	}
+    }
 }

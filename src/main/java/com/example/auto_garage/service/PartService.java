@@ -22,7 +22,6 @@ public class PartService {
     }
 
 
-
     public Optional<Part> getPartById(long id) {
         if (!partRepository.existsById(id)) throw new RecordNotFoundException();
         return partRepository.findById(id);
@@ -32,6 +31,7 @@ public class PartService {
         Part newPart = partRepository.save(part);
         return newPart.getId();
     }
+
     public void updatePart(long id, Part part) {
         if (!partRepository.existsById(id)) throw new RecordNotFoundException();
         Part existingPart = partRepository.findById(id).get();
@@ -40,7 +40,7 @@ public class PartService {
         partRepository.save(existingPart);
     }
 
-    public void partialUpdatePart(long id, Map<String, String> fields,Map<Double,Double>fields2) {
+    public void partialUpdatePart(long id, Map<String, String> fields, Map<Double, Double> fields2) {
         if (!partRepository.existsById(id)) throw new RecordNotFoundException();
         Part part = partRepository.findById(id).get();
         for (String field : fields.keySet()) {
@@ -60,7 +60,6 @@ public class PartService {
         if (!partRepository.existsById(id)) throw new RecordNotFoundException();
         partRepository.deleteById(id);
     }
-
 
 
 }

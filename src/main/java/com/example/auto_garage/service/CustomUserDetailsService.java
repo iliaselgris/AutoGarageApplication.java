@@ -1,4 +1,5 @@
 package com.example.auto_garage.service;
+
 import com.example.auto_garage.exceptions.UsernameNotFoundException;
 import com.example.auto_garage.model.employee.Authority;
 import com.example.auto_garage.model.employee.User;
@@ -32,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         Set<Authority> authorities = user.get().getAuthorities();
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        for (Authority authority: authorities) {
+        for (Authority authority : authorities) {
             grantedAuthorities.add(new SimpleGrantedAuthority(authority.getAuthority()));
         }
 

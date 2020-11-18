@@ -5,6 +5,7 @@ import com.example.auto_garage.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.auto_garage.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -23,7 +24,6 @@ public class CustomerService {
     }
 
 
-
     public long createCustomer(Customer customer) {
         Customer newCustomer = customerRepository.save(customer);
         return newCustomer.getId();
@@ -34,7 +34,6 @@ public class CustomerService {
         if (!customerRepository.existsById(id)) throw new RecordNotFoundException();
         return customerRepository.findById(id);
     }
-
 
 
     public void updateCustomer(long id, Customer customer) {
@@ -69,7 +68,6 @@ public class CustomerService {
         }
         customerRepository.save(customer);
     }
-
 
 
     public void deleteCustomerById(long id) {

@@ -54,8 +54,8 @@ public class PartController {
 
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<Object> updatePartPartial(@PathVariable("id") long id, @RequestBody Map<String, String> fields,Map<Double,Double>fields2) {
-        partService.partialUpdatePart(id, fields,fields2);
+    public ResponseEntity<Object> updatePartPartial(@PathVariable("id") long id, @RequestBody Map<String, String> fields, Map<Double, Double> fields2) {
+        partService.partialUpdatePart(id, fields, fields2);
         return ResponseEntity.noContent().build();
     }
 

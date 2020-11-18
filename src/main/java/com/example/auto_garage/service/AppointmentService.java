@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class AppointmentService  {
+public class AppointmentService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
@@ -20,7 +20,6 @@ public class AppointmentService  {
     public Collection<Appointment> getAllAppointments() {
         return appointmentRepository.findAll();
     }
-
 
 
     public Optional<Appointment> getAppointmentById(long id) {
@@ -32,6 +31,7 @@ public class AppointmentService  {
         Appointment newAppointment = appointmentRepository.save(appointment);
         return newAppointment.getId();
     }
+
     public void updateAppointment(long id, Appointment appointment) {
         if (!appointmentRepository.existsById(id)) throw new RecordNotFoundException();
         Appointment existingAppointment = appointmentRepository.findById(id).get();
@@ -60,7 +60,6 @@ public class AppointmentService  {
         if (!appointmentRepository.existsById(id)) throw new RecordNotFoundException();
         appointmentRepository.deleteById(id);
     }
-
 
 
 }

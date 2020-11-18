@@ -11,7 +11,7 @@ public class Auto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
+    private Long id;
 
     private String plate;
 
@@ -24,11 +24,9 @@ public class Auto {
     private String kiloStand;
 
 
-
     @ManyToOne
-    @JoinColumn(name= "customer_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
-
 
 
     public Long getId() {
@@ -86,7 +84,6 @@ public class Auto {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
 
 
 }
