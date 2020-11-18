@@ -18,9 +18,9 @@ public class DatabaseFile {
 
     private String fileType;
 
-    @ManyToOne
-//    @JoinColumn(name = "id")
-    private User user;
+//    @ManyToOne
+////    @JoinColumn(name = "id")
+//    private User user;
     @Lob
     private byte[] data;
 

@@ -1,6 +1,10 @@
 package com.example.auto_garage.model;
 
+import com.example.auto_garage.model.Auto;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -23,6 +27,8 @@ public class Customer {
     @Column
     private String mobile;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private List<Auto> autos = new ArrayList<>();
 
     public long getId() {
         return id;

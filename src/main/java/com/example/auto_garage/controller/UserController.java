@@ -1,111 +1,84 @@
 package com.example.auto_garage.controller;
 
+import com.example.auto_garage.exceptions.BadRequestException;
 import com.example.auto_garage.model.employee.User;
-import com.example.auto_garage.repository.UserRepository;
-import com.example.auto_garage.service.employee.UserService;
+import com.example.auto_garage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.security.Principal;
-import java.util.List;
+import java.net.URI;
+import java.util.Map;
 
 import static org.springframework.http.ResponseEntity.ok;
 
 @RequestMapping("/users")
 @RestController
+@PreAuthorize("hasRole('ADMIN')")
 public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
-
-//    @GetMapping("index")
-//    public String home() {
-//        return ("<h1>Welcome</h1>");
-//    }
-//
-    @PreAuthorize("hasAnyRole('MONTEUR','FRONTDESK')")
-    @GetMapping("/user")
-    public String user() {
-        return ("<h1>Welcome User</h1>");
-    }
-
-    @GetMapping("/admin")
-    public String admin() {
-        return ("<h1>Welcome Admin</h1>");
-    }
-
-
 
     // display list of Users
     @GetMapping(value = "")
-//    public ResponseEntity<Object> viewHomePage(Model model) {
-////        return findPaginated(1, "firstName", "asc", model);
-//        return ResponseEntity.ok().body(userService.getAllUsers());
-    public ResponseEntity<Object> getUsers() {
-        return ResponseEntity.ok().body(userRepository.findAll());
+    public ResponseEntity<Object> getAllUsers() {
+        return ResponseEntity.ok().body(userService.getAllUsers());
     }
 
-
-
-    @GetMapping(value = "/{id}")
-            public ResponseEntity<Object> getUSER(@PathVariable("id") long id) {
-        return ResponseEntity.ok().body(userRepository.findById(id));
+    @GetMapping(value = "/{username}")
+    public ResponseEntity<Object> getUser(@PathVariable("username") String username) {
+        return ResponseEntity.ok().body(userService.getUser(username));
     }
 
-    @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") User user) {
-        // save user to database
-        userService.saveUser(user);
-        return "redirect:/";
+    @PostMapping(value = "")
+    public ResponseEntity<Object> createKlant(@RequestBody User user) {
+        String newUsername = userService.createUser(user);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}")
+                .buildAndExpand(newUsername).toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
-    @PutMapping(value = "/{id}")
-    public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
-
-        // get user from the service
-        User user = userService.getUserById(id);
-
-        // set user as a model attribute to pre-populate the form
-        model.addAttribute("user", user);
-        return "update_user";
+    @PutMapping(value = "/{username}")
+    public ResponseEntity<Object> updateKlant(@PathVariable("username") String username, @RequestBody User user) {
+        userService.updateUser(username, user);
+        return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable(value = "id") long id) {
-
-        // call delete user method
-        this.userService.deleteUserById(id);
-        return "redirect:/";
+    @DeleteMapping(value = "/{username}")
+    public ResponseEntity<Object> deleteKlant(@PathVariable("username") String username) {
+        userService.deleteUser(username);
+        return ResponseEntity.noContent().build();
     }
 
-
-    @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
-                                @RequestParam("sortField") String sortField,
-                                @RequestParam("sortDir") String sortDir,
-                                Model model) {
-        int pageSize = 5;
-
-        Page<User> page = userService.findPaginated(pageNo, pageSize, sortField, sortDir);
-        List<User> listUser = page.getContent();
-
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
-
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-
-        model.addAttribute("listUser", listUser);
-        return "index";
+    @GetMapping(value = "/{username}/authorities")
+    public ResponseEntity<Object> getUserAuthorities(@PathVariable("username") String username) {
+        return ResponseEntity.ok().body(userService.getAuthorities(username));
     }
+
+    @PostMapping(value = "/{username}/authorities")
+    public ResponseEntity<Object> addUserAuthority(@PathVariable("username") String username, @RequestBody Map<String, Object> fields) {
+        try {
+            String authorityName = (String) fields.get("authority");
+            userService.addAuthority(username, authorityName);
+            return ResponseEntity.noContent().build();
+        }
+        catch (Exception ex) {
+            throw new BadRequestException();
+        }
+    }
+
+    @DeleteMapping(value = "/{username}/authorities/{authority}")
+    public ResponseEntity<Object> deleteUserAuthority(@PathVariable("username") String username, @PathVariable("authority") String authority) {
+        userService.removeAuthority(username, authority);
+        return ResponseEntity.noContent().build();
+    }
+
 }
 
 
