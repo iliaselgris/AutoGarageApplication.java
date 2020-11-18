@@ -23,6 +23,7 @@ public class AppointmentController {
     private AppointmentService appointmentService;
 
     // display list of Appointments
+    @PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR')")
     @GetMapping(value = "")
     public ResponseEntity<Object> getappointments() {
         return ResponseEntity.ok().body(appointmentService.getAllAppointments());

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 @RequestMapping
 @RestController
-@PreAuthorize("hasAnyRole('ADMIN','FRONTDESK')")
+@PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR')")
 public class FileUploadController {
 
     @Autowired

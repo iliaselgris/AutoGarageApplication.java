@@ -10,7 +10,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping(value = "/authenticated")
-@PreAuthorize("hasAnyRole('ADMIN','MONTEUR','FRONTDESK','MONTEUR','STOCK_MW','KASSIERE')")
+@PreAuthorize("hasAnyRole('ADMIN','MONTEUR','FRONTDESK','STOCK_MW','KASSIERE')")
 public class AuthenticatedController {
 
     @GetMapping(value = "")

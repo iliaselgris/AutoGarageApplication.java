@@ -35,7 +35,7 @@ public class AppointmentService  {
     public void updateAppointment(long id, Appointment appointment) {
         if (!appointmentRepository.existsById(id)) throw new RecordNotFoundException();
         Appointment existingAppointment = appointmentRepository.findById(id).get();
-        existingAppointment.setAppointment1(appointment.getAppointment1());
+        existingAppointment.setExamination(appointment.getExamination());
         existingAppointment.setAppointment2(appointment.getAppointment2());
         appointmentRepository.save(existingAppointment);
     }
@@ -45,10 +45,10 @@ public class AppointmentService  {
         Appointment appointment = appointmentRepository.findById(id).get();
         for (String field : fields.keySet()) {
             switch (field.toLowerCase()) {
-                case "plate":
-                    appointment.setAppointment1((String) fields.get(field));
+                case "examination":
+                    appointment.setExamination((String) fields.get(field));
                     break;
-                case "brand":
+                case "appointment2":
                     appointment.setAppointment2((String) fields.get(field));
                     break;
             }

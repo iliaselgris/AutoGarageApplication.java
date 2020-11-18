@@ -13,6 +13,21 @@ public class Part {
     private String name;
     private double price;
 
+
+    @ManyToOne
+    @JoinColumn(name="reparings_id")
+
+    private Reparings reparings;
+
+
+    public Reparings getReparings() {
+        return reparings;
+    }
+
+    public void setReparings(Reparings reparings) {
+        this.reparings = reparings;
+    }
+
     public long getId() {
         return id;
     }

@@ -1,18 +1,23 @@
 package com.example.auto_garage.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "appointments")
+@Table(name = "appointment")
 public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String appointment1;
+    private String examination;
     private String appointment2;
     private final double price = 45;
 
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "appointment")
+    private List<Customer> customer = new ArrayList<>();
 
 
     public long getId() {
@@ -23,12 +28,12 @@ public class Appointment {
         this.id = id;
     }
 
-    public String getAppointment1() {
-        return appointment1;
+    public String getExamination() {
+        return examination;
     }
 
-    public void setAppointment1(String appointment1) {
-        this.appointment1 = appointment1;
+    public void setExamination(String appointment1) {
+        this.examination = appointment1;
     }
 
     public String getAppointment2() {

@@ -23,6 +23,7 @@ public class AutoController {
     private AutoService autoService;
 
     // display list of Autos
+    @PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR')")
     @GetMapping(value = "")
     public ResponseEntity<Object> getautos() {
         return ResponseEntity.ok().body(autoService.getAllAutos());

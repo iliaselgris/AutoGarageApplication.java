@@ -14,14 +14,19 @@ VALUES ('bart', 'ROLE_MONTEUR'),
 
 
 
-INSERT INTO customer(email, last_name, mobile, name)
-VALUES ('Mark@gmail.com', 'de man', '0612343455', 'Mark');
-INSERT INTO customer(email, last_name, mobile, name)
-VALUES ('blabla@gmail.com', 'de kerel', '0612343455', 'blabla');
-INSERT INTO customer(email, last_name, mobile, name)
-VALUES ('blue@gmail.com', 'de vrouw', '0612343455', 'Blue');
-INSERT INTO customer(email, last_name, mobile, name)
-VALUES ('Sander@gmail.com', 'de sander', '0612343455', 'Sander');
+INSERT INTO appointment(examination, appointment2, price) VALUES ('ja','ja',45);
+INSERT INTO appointment(examination, appointment2, price) VALUES ('ja','nee',45);
+INSERT INTO appointment(examination, appointment2, price) VALUES ('ja','ja',45);
+INSERT INTO appointment(examination, appointment2, price) VALUES ('ja','nee',45);
+
+INSERT INTO customer(email, last_name, mobile, name,appointment_id)
+VALUES ('Mark@gmail.com', 'de man', '0612343455', 'Mark',1);
+INSERT INTO customer(email, last_name, mobile, name,appointment_id)
+VALUES ('blabla@gmail.com', 'de kerel', '0612343455', 'blabla',2);
+INSERT INTO customer(email, last_name, mobile, name,appointment_id)
+VALUES ('blue@gmail.com', 'de vrouw', '0612343455', 'Blue',3);
+INSERT INTO customer(email, last_name, mobile, name,appointment_id)
+VALUES ('Sander@gmail.com', 'de sander', '0612343455', 'Sander',4);
 
 INSERT INTO auto (brand, build_year, kilo_stand, model, plate, customer_id)
 VALUES ('Audi', '2015', '90000', 'A8', '34-JKL-8', 1);
@@ -32,3 +37,25 @@ VALUES ('Cherry', '2003', '253000', 'QQ', '23-dd-21', 2);
 INSERT INTO auto (brand, build_year, kilo_stand, model, plate, customer_id)
 VALUES ('VW', '2006', '283000', 'polo', '22-st-dd', 3);
 
+INSERT INTO reparings(name, reparing_Price) VALUES ('band vervangen',15);
+INSERT INTO reparings(name, reparing_Price) VALUES ('voorruit vervangen',25);
+INSERT INTO reparings(name, reparing_Price) VALUES ('linkerspiegel vervangen',5);
+INSERT INTO reparings(name, reparing_Price)VALUES ('rechterspiegel vervangen',5);
+INSERT INTO reparings(name, reparing_Price)VALUES ('remschijf vervangen',18);
+INSERT INTO reparings(name, reparing_Price)VALUES ('remblok vervangen',5);
+INSERT INTO reparings(name, reparing_Price)VALUES ('accu vervangen',8);
+INSERT INTO reparings(name, reparing_Price)VALUES ('ventilator vervangen',45);
+INSERT INTO reparings(name, reparing_Price)VALUES ('schokdemper vervangen',38);
+INSERT INTO reparings(name, reparing_Price)VALUES ('bougie vervangen',5);
+
+
+INSERT INTO parts(name, price,reparings_id) VALUES ('band',55,1);
+INSERT INTO parts(name, price,reparings_id) VALUES ('voorruit',100,2);
+INSERT INTO parts(name, price,reparings_id) VALUES ('linkerspiegel',12,3);
+INSERT INTO parts(name, price,reparings_id) VALUES ('rechterspiegel',12,4);
+INSERT INTO parts(name, price,reparings_id) VALUES ('remschijf',40,5);
+INSERT INTO parts(name, price,reparings_id) VALUES ('remblok',8.50,6);
+INSERT INTO parts(name, price,reparings_id) VALUES ('accu',95,7);
+INSERT INTO parts(name, price,reparings_id) VALUES ('ventilator',115,8);
+INSERT INTO parts(name, price,reparings_id) VALUES ('schokdemper',52,9);
+INSERT INTO parts(name, price,reparings_id) VALUES ('bougie',10,10);

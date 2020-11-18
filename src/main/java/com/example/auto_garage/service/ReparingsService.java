@@ -36,7 +36,7 @@ public class ReparingsService {
         if (!reparingsRepository.existsById(id)) throw new RecordNotFoundException();
         Reparings existingReparings = reparingsRepository.findById(id).get();
         existingReparings.setName(reparings.getName());
-        existingReparings.setPrice(reparings.getPrice());
+        existingReparings.setReparingPrice(reparings.getReparingPrice());
         reparingsRepository.save(existingReparings);
     }
 
@@ -49,7 +49,7 @@ public class ReparingsService {
                     reparings.setName((String) fields.get(field));
                     break;
                 case "brand":
-                    reparings.setPrice((double) fields2.get(field));
+                    reparings.setReparingPrice((double) fields2.get(field));
                     break;
             }
         }

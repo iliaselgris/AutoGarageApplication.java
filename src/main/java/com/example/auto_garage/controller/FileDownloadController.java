@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
 
 @RestController
-@PreAuthorize("hasAnyRole('ADMIN','FRONTDESK')")
+@PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR')")
 public class FileDownloadController {
 
     @Autowired

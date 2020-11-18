@@ -16,7 +16,6 @@ import java.util.Map;
 
 @RestController
 @PreAuthorize("hasAnyRole('ADMIN','STOCK_MW')")
-
 public class PartController {
 
 
@@ -25,14 +24,14 @@ public class PartController {
 
     // display list of Parts
     @GetMapping(value = "")
-    @PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR')")
+    @PreAuthorize("hasAnyRole('ADMIN','MONTEUR')")
     public ResponseEntity<Object> getParts() {
         return ResponseEntity.ok().body(partService.getAllParts());
     }
 
 
     @GetMapping(value = "/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR')")
+    @PreAuthorize("hasAnyRole('ADMIN','MONTEUR')")
     public ResponseEntity<Object> getPart(@PathVariable("id") long id) {
         return ResponseEntity.ok().body(partService.getPartById(id));
     }

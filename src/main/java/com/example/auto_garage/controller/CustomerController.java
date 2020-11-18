@@ -25,13 +25,14 @@ public class CustomerController {
 
 
     @GetMapping(value = "")
+    @PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR','KASSIERE')")
     public ResponseEntity<Object> getCustomers() {
         return ResponseEntity.ok().body(customerService.getAllCustomers());
     }
 
 
     @GetMapping(value = "/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR')")
+    @PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR','KASSIERE')")
     public ResponseEntity<Object> getCustomer(@PathVariable("id") long id) {
         return ResponseEntity.ok().body(customerService.getCustomerById(id));
     }

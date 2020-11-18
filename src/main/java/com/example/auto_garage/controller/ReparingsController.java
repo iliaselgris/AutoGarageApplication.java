@@ -24,14 +24,14 @@ public class ReparingsController {
 
     // display list of Reparingss
     @GetMapping(value = "")
-    @PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR')")
+    @PreAuthorize("hasAnyRole('ADMIN','MONTEUR')")
     public ResponseEntity<Object> getReparings() {
         return ResponseEntity.ok().body(reparingsService.getAllReparings());
     }
 
 
     @GetMapping(value = "/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','FRONTDESK','MONTEUR')")
+    @PreAuthorize("hasAnyRole('ADMIN','MONTEUR')")
     public ResponseEntity<Object> getReparings(@PathVariable("id") long id) {
         return ResponseEntity.ok().body(reparingsService.getReparingsById(id));
     }

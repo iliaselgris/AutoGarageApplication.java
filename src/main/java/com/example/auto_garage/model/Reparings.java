@@ -1,6 +1,11 @@
 package com.example.auto_garage.model;
 
+import com.example.auto_garage.model.employee.AuthorityKey;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -11,7 +16,12 @@ public class Reparings {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    private double price;
+    private double reparingPrice;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reparings")
+    private List<Part> parts = new ArrayList<>();
+
 
     public long getId() {
         return id;
@@ -29,11 +39,11 @@ public class Reparings {
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
+    public double getReparingPrice() {
+        return reparingPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setReparingPrice(double price) {
+        this.reparingPrice = price;
     }
 }
